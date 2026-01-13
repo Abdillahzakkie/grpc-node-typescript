@@ -1,0 +1,35 @@
+{
+	"name": "grpc-node-typescript",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"pre-commit": [
+		"ts.check",
+		"fix-unsafe"
+	],
+	"scripts": {
+		"ts.check": "tsc --project tsconfig.json",
+		"build": "rimraf build && tsc",
+		"migrate:up": "migrate-mongo up",
+		"migrate:down": "migrate-mongo down",
+		"start": "node --trace-warnings ./build/index.js",
+		"start:dev": "nodemon ./src/index.ts",
+		"start:client": "nodemon ./src/client.ts",
+		"dev": "concurrently yarn:start:dev",
+		"test": "env-cmd -f .env.test.local jest --watchAll --detectOpenHandles --testTimeout 15000",
+		"release-it": "yarn version --patch && git push --follow-tags",
+		"lint": "biome check",
+		"format": "biome format --write",
+		"fix-unsafe": "biome check --write --unsafe"
+	},
+	"dependencies": {
+		"@grpc/grpc-js": "^1.14.3",
+		"@grpc/proto-loader": "^0.8.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.3.11",
+		"concurrently": "^9.2.1",
+		"nodemon": "^3.1.11",
+		"typescript": "^5.9.3"
+	}
+}
