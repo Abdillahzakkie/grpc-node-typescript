@@ -1,23 +1,16 @@
 import * as grpcLibrary from "@grpc/grpc-js";
 import { protoPackageLoader } from "./constants";
-import { HelloRequest, HelloResponse, sayHello } from "./controllers";
-
-interface Server {
-	[key: string]: any;
-	SayHello: grpcLibrary.handleUnaryCall<HelloRequest, HelloResponse>;
-}
+import { sayHello } from "./controllers";
+import { ProtoGrpcType as GreeterServiceProtoType } from "./proto/generated/greeter";
 
 const server = new grpcLibrary.Server();
 
-const protoPackage = protoPackageLoader({
+const protoPackage = protoPackageLoader<GreeterServiceProtoType>({
 	path: "greeter.proto",
-	packageName: "greeter",
 });
 
-if (protoPackage && protoPackage["GreeterService"]) {
-	server.addService(protoPackage["GreeterService"].service, {
-		SayHello: sayHello,
-	} as Server);
-}
+server.addService(protoPackage.greeter.GreeterService.service, {
+	SayHello: sayHello,
+});
 
 export default server;
