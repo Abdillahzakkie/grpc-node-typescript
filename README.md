@@ -38,6 +38,7 @@ A simple gRPC server and client implementation using Node.js and TypeScript with
 ### Server ([index.ts](src/index.ts))
 
 The server entry point that:
+
 1. Imports the configured gRPC server from [app.ts](src/app.ts)
 2. Binds the server to `127.0.0.1:50051` (localhost)
 3. Uses insecure credentials for development
@@ -46,6 +47,7 @@ The server entry point that:
 ### Server Configuration ([app.ts](src/app.ts))
 
 The gRPC server setup that:
+
 1. Creates a new gRPC server instance
 2. Loads the `greeter.proto` definition using the proto package loader
 3. Adds the GreeterService with the `sayHello` handler implementation
@@ -54,6 +56,7 @@ The gRPC server setup that:
 ### Client ([client.ts](src/client.ts))
 
 A simple gRPC client that:
+
 1. Connects to the server at `localhost:50051`
 2. Creates a `GreeterService` client instance
 3. Makes a `SayHello` RPC call with sample data (John Doe)
@@ -62,6 +65,7 @@ A simple gRPC client that:
 ### Protocol Buffer Definition ([greeter.proto](src/proto/greeter.proto))
 
 Defines the gRPC service contract:
+
 ```proto
 service GreeterService {
     rpc SayHello (HelloRequest) returns (HelloResponse);
@@ -80,6 +84,7 @@ message HelloResponse {
 ### Service Handler
 
 The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter/index.ts):
+
 - Receives `HelloRequest` with `first_name` and `last_name`
 - Returns `HelloResponse` with a personalized greeting message
 - Implements the gRPC unary call interface with proper error handling
@@ -94,6 +99,7 @@ The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd grpc-node-typescript
@@ -109,11 +115,13 @@ The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter
 ### Development
 
 1. **Start the gRPC server in development mode**
+
    ```bash
    npm run start:dev
    # or
    yarn start:dev
    ```
+
    This starts the server on `localhost:50051` with hot-reloading using nodemon.
 
 2. **Run the client in a separate terminal**
@@ -127,6 +135,7 @@ The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter
 ### Production Build
 
 1. **Build the project**
+
    ```bash
    npm run build
    # or
@@ -142,19 +151,20 @@ The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter
 
 ## 📝 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `start:dev` | Start server in development mode with nodemon |
-| `start:client` | Run the gRPC client |
-| `build` | Build TypeScript to JavaScript |
-| `start` | Start production server |
-| `lint` | Run Biome linter |
-| `format` | Format code with Biome |
-| `ts.check` | Type check with TypeScript compiler |
+| Script         | Description                                   |
+| -------------- | --------------------------------------------- |
+| `start:dev`    | Start server in development mode with nodemon |
+| `start:client` | Run the gRPC client                           |
+| `build`        | Build TypeScript to JavaScript                |
+| `start`        | Start production server                       |
+| `lint`         | Run Biome linter                              |
+| `format`       | Format code with Biome                        |
+| `ts.check`     | Type check with TypeScript compiler           |
 
 ## 🧪 Testing the Application
 
 1. Start the server:
+
    ```bash
    npm run start:dev
    ```
@@ -165,9 +175,10 @@ The `sayHello` handler in [controllers/greeter/index.ts](src/controllers/greeter
    ```
 
 Expected output from client:
+
 ```
 Running client...
-Greeting: Hello, John Doe! DragonLord greets you.
+Greeting: Hello, John Doe!
 ```
 
 ## 🔧 Configuration
@@ -180,6 +191,7 @@ Greeting: Hello, John Doe! DragonLord greets you.
 ### Proto Loader Options
 
 The project uses specific proto loader options defined in [protoLoaderOptions.ts](src/constants/protoLoaderOptions.ts):
+
 - `keepCase: true` - Preserve field name casing
 - `longs: String` - Convert long values to strings
 - `enums: String` - Convert enums to strings
@@ -198,10 +210,12 @@ To add new gRPC services:
 ## 📦 Dependencies
 
 ### Main Dependencies
+
 - `@grpc/grpc-js`: gRPC implementation for Node.js
 - `@grpc/proto-loader`: Protocol Buffer loader for gRPC
 
 ### Development Dependencies
+
 - `typescript`: TypeScript compiler
 - `nodemon`: Development server with hot-reload
 - `@biomejs/biome`: Fast linter and formatter
