@@ -9,8 +9,8 @@ service GreeterService {
 }
 
 message HelloRequest {
-    string first_name = 1;
-    string last_name = 2;
+    string firstName = 1 [default = ""];
+    string lastName = 2 [default = ""];
 }
 
 message HelloResponse {
