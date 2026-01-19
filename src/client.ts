@@ -1,34 +1,32 @@
+import "dotenv/config";
 import * as grpcLibrary from "@grpc/grpc-js";
 import { PORT, protoPackageLoader } from "./constants";
-import { HelloRequest, HelloResponse } from "./controllers";
+import type { HelloRequest } from "./proto/generated/greeter/HelloRequest";
+import type { ProtoGrpcType as GreeterServiceProtoType } from "./proto/generated/greeter";
 
-const protoPackage = protoPackageLoader({
+const protoPackage = protoPackageLoader<GreeterServiceProtoType>({
 	path: "greeter.proto",
-	packageName: "greeter",
 });
 
 function main() {
 	console.log("Running client...");
-	const client = new protoPackage.GreeterService(
+	const client = new protoPackage.greeter.GreeterService(
 		`localhost:${PORT}`,
-		grpcLibrary.credentials.createInsecure()
+		grpcLibrary.credentials.createInsecure(),
 	);
 
 	const request: HelloRequest = {
-		first_name: "John",
-		last_name: "Doe",
+		firstName: "John",
+		lastName: "Doe",
 	};
 
-	client.SayHello(
-		request,
-		(err: grpcLibrary.ServiceError | null, response: HelloResponse) => {
-			if (err) {
-				console.error("Error:", err);
-			} else {
-				console.log("Greeting:", response.message);
-			}
+	client.SayHello(request, (err, response) => {
+		if (err) {
+			console.error("Error:", err);
+		} else {
+			console.log("Greeting:", response?.message);
 		}
-	);
+	});
 }
 
 main();
