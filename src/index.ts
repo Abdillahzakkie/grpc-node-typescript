@@ -1,3 +1,4 @@
+import "dotenv/config";
 import * as grpcLibrary from "@grpc/grpc-js";
 import server from "./app";
 import { PORT } from "./constants";
@@ -16,7 +17,7 @@ function main() {
 			}
 			console.log(`Server running at ${bindAddress}`);
 			// server.start();
-		}
+		},
 	);
 }
 main();
