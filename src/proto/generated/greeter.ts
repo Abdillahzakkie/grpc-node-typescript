@@ -15,10 +15,8 @@ import type {
 } from "./greeter/HelloResponse";
 
 type SubtypeConstructor<
-	Constructor extends new (
-		...args: any
-	) => any,
-	Subtype,
+	Constructor extends new (...args: any) => any,
+	Subtype
 > = {
 	new (...args: ConstructorParameters<Constructor>): Subtype;
 };

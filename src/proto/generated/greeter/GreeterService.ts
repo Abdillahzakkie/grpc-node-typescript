@@ -16,41 +16,41 @@ export interface GreeterServiceClient extends grpc.Client {
 		argument: _greeter_HelloRequest,
 		metadata: grpc.Metadata,
 		options: grpc.CallOptions,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	SayHello(
 		argument: _greeter_HelloRequest,
 		metadata: grpc.Metadata,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	SayHello(
 		argument: _greeter_HelloRequest,
 		options: grpc.CallOptions,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	SayHello(
 		argument: _greeter_HelloRequest,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	sayHello(
 		argument: _greeter_HelloRequest,
 		metadata: grpc.Metadata,
 		options: grpc.CallOptions,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	sayHello(
 		argument: _greeter_HelloRequest,
 		metadata: grpc.Metadata,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	sayHello(
 		argument: _greeter_HelloRequest,
 		options: grpc.CallOptions,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 	sayHello(
 		argument: _greeter_HelloRequest,
-		callback: grpc.requestCallback<_greeter_HelloResponse__Output>,
+		callback: grpc.requestCallback<_greeter_HelloResponse__Output>
 	): grpc.ClientUnaryCall;
 }
 

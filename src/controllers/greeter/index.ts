@@ -2,7 +2,7 @@ import type { GreeterServiceHandlers } from "../../proto/generated/greeter/Greet
 
 export const sayHello: GreeterServiceHandlers["SayHello"] = (
 	call,
-	callback,
+	callback
 ) => {
 	const { firstName, lastName } = call.request;
 	const message = `Hello, ${firstName} ${lastName}!`;

@@ -12,7 +12,7 @@ function main() {
 	console.log("Running client...");
 	const client = new protoPackage.greeter.GreeterService(
 		`localhost:${PORT}`,
-		grpcLibrary.credentials.createInsecure(),
+		grpcLibrary.credentials.createInsecure()
 	);
 
 	const request: HelloRequest = {
