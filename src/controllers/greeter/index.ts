@@ -1,23 +1,16 @@
-import * as grpcLibrary from "@grpc/grpc-js";
+import type { GreeterServiceHandlers } from "../../proto/generated/greeter/GreeterService";
 
-export interface HelloRequest {
-	first_name: string;
-	last_name: string;
-}
-
-export interface HelloResponse {
-	message: string;
-}
-
-export const sayHello: grpcLibrary.handleUnaryCall<
-	HelloRequest,
-	HelloResponse
-> = (
-	call: grpcLibrary.ServerUnaryCall<HelloRequest, HelloResponse>,
-	callback: grpcLibrary.sendUnaryData<HelloResponse>
+export const sayHello: GreeterServiceHandlers["SayHello"] = (
+	call,
+	callback,
 ) => {
-	const firstName = call.request.first_name;
-	const lastName = call.request.last_name;
+	const { firstName, lastName } = call.request;
 	const message = `Hello, ${firstName} ${lastName}!`;
-	callback(null, { message });
+
+	const requestMetadata = call.metadata.get("request-id")?.flat()[0];
+	const responseMetadata = call.metadata.clone();
+	if (requestMetadata) {
+		responseMetadata.set("request-id", requestMetadata);
+	}
+	callback(null, { message }, responseMetadata);
 };
